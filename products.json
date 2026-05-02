@@ -5,7 +5,7 @@
     "slug": "gold-ring-classic",
     "price": 299.99,
     "category": "rings",
-    "image": "/images/gold-ring.jpg",
+    "image": "/images/gold-ring.svg",
     "description": "A timeless 22K gold ring with a classic polished finish.",
     "inStock": true
   },
@@ -15,7 +15,7 @@
     "slug": "diamond-engagement-ring",
     "price": 1299.99,
     "category": "rings",
-    "image": "/images/diamond-ring.jpg",
+    "image": "/images/diamond-ring.svg",
     "description": "Elegant diamond engagement ring with brilliant cut center stone.",
     "inStock": true
   },
@@ -25,7 +25,7 @@
     "slug": "silver-chain-necklace",
     "price": 149.99,
     "category": "necklaces",
-    "image": "/images/silver-chain.jpg",
+    "image": "/images/silver-chain.svg",
     "description": "Minimalist sterling silver chain for everyday wear.",
     "inStock": true
   },
@@ -35,7 +35,7 @@
     "slug": "pearl-necklace-set",
     "price": 499.99,
     "category": "necklaces",
-    "image": "/images/pearl-necklace.jpg",
+    "image": "/images/pearl-necklace.svg",
     "description": "Elegant pearl necklace set perfect for formal occasions.",
     "inStock": false
   },
@@ -45,7 +45,7 @@
     "slug": "gold-bangle-pair",
     "price": 699.99,
     "category": "bracelets",
-    "image": "/images/gold-bangles.jpg",
+    "image": "/images/gold-bangles.svg",
     "description": "Traditional gold bangles with intricate detailing.",
     "inStock": true
   },
@@ -55,7 +55,7 @@
     "slug": "charm-bracelet",
     "price": 199.99,
     "category": "bracelets",
-    "image": "/images/charm-bracelet.jpg",
+    "image": "/images/charm-bracelet.svg",
     "description": "Customizable charm bracelet with multiple symbolic charms.",
     "inStock": true
   },
@@ -65,7 +65,7 @@
     "slug": "stud-earrings",
     "price": 89.99,
     "category": "earrings",
-    "image": "/images/stud-earrings.jpg",
+    "image": "/images/stud-earrings.svg",
     "description": "Simple and elegant stud earrings for daily wear.",
     "inStock": true
   },
@@ -75,7 +75,7 @@
     "slug": "hoop-earrings-gold",
     "price": 179.99,
     "category": "earrings",
-    "image": "/images/hoop-earrings.jpg",
+    "image": "/images/hoop-earrings.svg",
     "description": "Classic gold hoop earrings with a smooth finish.",
     "inStock": false
   },
@@ -85,7 +85,7 @@
     "slug": "luxury-watch",
     "price": 899.99,
     "category": "watches",
-    "image": "/images/luxury-watch.jpg",
+    "image": "/images/luxury-watch.svg",
     "description": "Premium watch with leather strap and gold casing.",
     "inStock": true
   },
@@ -95,7 +95,7 @@
     "slug": "minimalist-watch",
     "price": 249.99,
     "category": "watches",
-    "image": "/images/minimalist-watch.jpg",
+    "image": "/images/minimalist-watch.svg",
     "description": "Modern minimalist watch with clean dial design.",
     "inStock": true
   }

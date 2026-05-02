@@ -1,0 +1,125 @@
+---
+import ProductGrid from "../components/ProductGrid.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+import { catalog } from "../lib/catalog";
+
+const products = catalog.getAllProducts();
+const categories = catalog.getCategories();
+---
+
+<MainLayout title="Jewelry Catalog">
+  <header class="header">
+    <h1>Jewelry Catalog</h1>
+    <p>Explore all pieces and open each product page for details.</p>
+  </header>
+
+  <section class="toolbar">
+    <div class="control">
+      <label for="category-filter">Filter by category</label>
+      <select id="category-filter">
+        <option value="all">All categories</option>
+        {categories.map((category: string) => <option value={category}>{category}</option>)}
+      </select>
+    </div>
+    <div class="control">
+      <label for="stock-filter">Stock</label>
+      <select id="stock-filter">
+        <option value="all">All products</option>
+        <option value="in">In stock only</option>
+      </select>
+    </div>
+  </section>
+
+  <p id="result-count">{products.length} products found</p>
+  <ProductGrid products={products} />
+
+  <script>
+    const categoryFilter = document.querySelector("#category-filter");
+    const stockFilter = document.querySelector("#stock-filter");
+    const cards = document.querySelectorAll(".card");
+    const resultCount = document.querySelector("#result-count");
+
+    function updateView() {
+      if (
+        !(categoryFilter instanceof HTMLSelectElement) ||
+        !(stockFilter instanceof HTMLSelectElement) ||
+        !(resultCount instanceof HTMLElement)
+      ) {
+        return;
+      }
+
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        if (!(card instanceof HTMLElement)) {
+          return;
+        }
+
+        const category = card.dataset.category;
+        const stock = card.dataset.stock;
+        const categoryMatch = categoryFilter.value === "all" || categoryFilter.value === category;
+        const stockMatch = stockFilter.value === "all" || stock === stockFilter.value;
+        const visible = categoryMatch && stockMatch;
+
+        card.style.display = visible ? "grid" : "none";
+        if (visible) {
+          visibleCount += 1;
+        }
+      });
+
+      resultCount.textContent = `${visibleCount} products found`;
+    }
+
+    categoryFilter?.addEventListener("change", updateView);
+    stockFilter?.addEventListener("change", updateView);
+  </script>
+</MainLayout>
+
+<style>
+  .header p {
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+  }
+  .toolbar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.9rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+  }
+  .control {
+    display: grid;
+    gap: 0.35rem;
+  }
+  label {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  select {
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    min-width: 180px;
+    padding: 0.35rem 2.2rem 0.35rem 0.6rem;
+    background: #fff;
+    color: var(--text);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 20 20'%3E%3Cpath fill='%236b7280' d='M5.5 7.5L10 12l4.5-4.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+    background-size: 14px 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+  select:hover {
+    border-color: #9ca3af;
+    background: #f9fafb;
+  }
+  #result-count {
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+</style>

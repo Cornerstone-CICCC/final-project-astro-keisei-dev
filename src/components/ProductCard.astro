@@ -1,0 +1,81 @@
+---
+import type { Product } from "../models/Product";
+
+interface Props {
+  product: Product;
+}
+
+const { product }: Props = Astro.props;
+---
+
+<article class="card" data-category={product.category} data-stock={product.isInStock() ? "in" : "out"}>
+  <img src={product.image} alt={product.title} loading="lazy" />
+  <div class="content">
+    <p class="category">{product.getCategoryLabel()}</p>
+    <h3>{product.title}</h3>
+    <p class="price">{product.getFormattedPrice()}</p>
+    <p class:list={["stock", product.isInStock() ? "instock" : "outstock"]}>
+      {product.isInStock() ? "In stock" : "Out of stock"}
+    </p>
+    <a href={`/products/${product.getSlug()}`}>View details</a>
+  </div>
+</article>
+
+<style>
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    display: grid;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: #c4cad3;
+    box-shadow: 0 10px 24px rgba(17, 24, 39, 0.08);
+  }
+  img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    background: #efede8;
+  }
+  .content {
+    padding: 0.9rem;
+  }
+  .category {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
+  }
+  h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .price {
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+  }
+  .stock {
+    font-size: 0.9rem;
+    margin-bottom: 0.7rem;
+  }
+  .instock {
+    color: #226743;
+  }
+  .outstock {
+    color: #a13a3a;
+  }
+  a {
+    text-decoration: none;
+    color: var(--accent);
+    font-weight: 600;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  }
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-color: currentColor;
+  }
+</style>
